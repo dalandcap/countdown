@@ -23,7 +23,10 @@ const Countdown: FC = () => {
 
   return (
     <CellsContainer>
-      {Object.entries(time).map(([segment,value]) => <TimeCell label={i18next.t(segment)} value={value}/>)}
+      {Object.entries(time).map(([segment,value]) => {
+        // the cells for the semgments from hours below should be shown always
+        const showCell = value || segment === 'seconds' || segment === 'minutes' || segment === 'hours'
+        return showCell ? <TimeCell key={segment} label={i18next.t(segment)} value={value}/> : null})}
     </CellsContainer>
   );
 }
