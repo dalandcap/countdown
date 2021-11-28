@@ -7,13 +7,14 @@ const Wrapper = styled.div`
   border: 1px solid black;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: center;
 `;
 
 const Value = styled.div`
   font-size: 4rem;
   font-weight: bold;
+  line-height: .75em;
 `;
 
 const Label = styled.div`
