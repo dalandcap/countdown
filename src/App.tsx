@@ -3,11 +3,13 @@ import React, { FC } from 'react';
 import { Countdown } from './components';
 import { AppWrapper, Caption } from './components/styled';
 
+const END_TIME = '6 December 2021 07:14:52 GMT';
+
 const App: FC = () => (
   <div className="App">
     <AppWrapper>
       <Caption>{i18next.t('caption')}</Caption>
-      <Countdown />
+      <Countdown endTime={new Date(END_TIME)} />
     </AppWrapper>
   </div>
 );
