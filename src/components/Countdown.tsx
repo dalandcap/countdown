@@ -1,23 +1,23 @@
 import { intervalToDuration } from 'date-fns';
 import i18next from 'i18next';
-import React, { FC, useEffect, useMemo, useState } from 'react';
+import React, { FC, useCallback, useEffect, useState } from 'react';
 import { CellsContainer } from './styled';
 import Cell from './Cell';
 
+const Countdown: FC<{ endTime: Date }> = ({ endTime }) => {
+  const getCountdownDuration = useCallback(
+    () => intervalToDuration({ start: Date.now(), end: endTime }),
+    [endTime]
+  );
 
-
-const Countdown: FC<{endTime: Date}> = ({endTime}) => {
-  const countdownDuration = useMemo(() =>
-    intervalToDuration({ start: Date.now() , end: endTime }), [endTime]);
-
-  const [time, setTime] = useState<Duration>(countdownDuration);
+  const [time, setTime] = useState<Duration>(getCountdownDuration());
 
   useEffect(() => {
     const tick = setInterval(() => {
-      setTime(countdownDuration);
+      setTime(getCountdownDuration());
     }, 1000);
     return () => clearInterval(tick);
-  }, [setTime, countdownDuration]);
+  }, [setTime, getCountdownDuration]);
 
   return (
     <CellsContainer>
