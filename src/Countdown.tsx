@@ -8,7 +8,6 @@ const END_TIME = '6 December 2021 07:14:52 GMT';
 
 
 const CellsContainer = styled.div`
-height: 100vh;
 display: flex;
 justify-content: center;
 align-items: center;
