@@ -3,7 +3,7 @@ import React, { FC } from 'react';
 import { Countdown } from './components';
 import { AppWrapper, Caption } from './components/styled';
 
-const END_TIME = '6 December 1998 07:14:52 GMT';
+const END_TIME = '6 December 2021 07:14:52 GMT';
 
 const App: FC = () => (
   <div className="App">

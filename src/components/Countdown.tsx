@@ -4,12 +4,7 @@ import React, { FC, useCallback, useEffect, useState } from 'react';
 import { CellsContainer } from './styled';
 import Cell from './Cell';
 
-type TimeUnit = 'seconds' | 'minutes' | 'hours' | 'days' | 'months' | 'years';
-
-const Countdown: FC<{ endTime: Date; unitsToShow?: TimeUnit[] }> = ({
-  endTime,
-  unitsToShow = ['seconds', 'minutes', 'hours', 'days'],
-}) => {
+const Countdown: FC<{ endTime: Date }> = ({ endTime }) => {
   const getCountdownDuration = useCallback(
     () => intervalToDuration({ start: Date.now(), end: endTime }),
     [endTime]
@@ -26,10 +21,15 @@ const Countdown: FC<{ endTime: Date; unitsToShow?: TimeUnit[] }> = ({
 
   return (
     <CellsContainer>
-      {Object.entries(time).map(([unit, value]) => {
-        const showCell = unitsToShow.includes(unit as TimeUnit);
+      {Object.entries(time).map(([segment, value]) => {
+        // the cells for the semgments from hours and below should be shown always (presumably)
+        const showCell =
+          value ||
+          segment === 'seconds' ||
+          segment === 'minutes' ||
+          segment === 'hours';
         return showCell ? (
-          <Cell key={unit} label={i18next.t(unit)} value={value} />
+          <Cell key={segment} label={i18next.t(segment)} value={value} />
         ) : null;
       })}
     </CellsContainer>
