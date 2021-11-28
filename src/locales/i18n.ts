@@ -4,7 +4,7 @@ import En from './en.json';
 import Ro from './ro.json';
 
 i18n.use(LanguageDetector).init({
-    lng: 'en',
+    lng: 'ro',
     resources: {
         en: {
             translation: En,
