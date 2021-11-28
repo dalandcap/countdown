@@ -2,8 +2,8 @@ import React, { FC } from 'react';
 import styled from 'styled-components';
 
 const Wrapper = styled.div`
-  width: 10rem;
-  height: 10rem;
+  width: 8rem;
+  height: 8rem;
   border: 1px solid black;
   display: flex;
   flex-direction: column;

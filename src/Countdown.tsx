@@ -11,9 +11,11 @@ const CellsContainer = styled.div`
 display: flex;
 justify-content: center;
 align-items: center;
+/* compensate from the margin-left of the fisrt cell since selecting the first child is not possible in styled-components and passing the the index to the cell wpuld be too much interference */
+margin-left: -1.5rem;
 
 .time-cell {
-  margin-left: -1px;
+  margin-left: 1.5rem;
 }
 `;
 
