@@ -20,10 +20,11 @@ const Value = styled.div`
 const Label = styled.div`
   text-transform: uppercase;
   letter-spacing: .1em;
+  line-height: .75em;
 `;
 
 const TimeCell: FC<{ value: Number; label: string }> = ({ value, label }) => (
-  <Wrapper>
+  <Wrapper className="time-cell">
     <Value>{value}</Value>
     <Label>{label}</Label>
   </Wrapper>
