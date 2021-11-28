@@ -4,7 +4,10 @@ import React, { FC, useCallback, useEffect, useState } from 'react';
 import { CellsContainer } from './styled';
 import Cell from './Cell';
 
-const Countdown: FC<{ endTime: Date }> = ({ endTime }) => {
+const Countdown: FC<{ endTime: Date; showMonths?: boolean }> = ({
+  endTime,
+  showMonths,
+}) => {
   const getCountdownDuration = useCallback(
     () => intervalToDuration({ start: Date.now(), end: endTime }),
     [endTime]
@@ -14,7 +17,11 @@ const Countdown: FC<{ endTime: Date }> = ({ endTime }) => {
 
   useEffect(() => {
     const tick = setInterval(() => {
-      setTime(getCountdownDuration());
+      let duration = getCountdownDuration();
+      const { days } = duration;
+      duration.months = (days as number) % 30;
+      duration.days = (days as number) % 30;
+      setTime(duration);
     }, 1000);
     return () => clearInterval(tick);
   }, [setTime, getCountdownDuration]);
