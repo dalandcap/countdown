@@ -6,6 +6,6 @@ import i18n from '../locales/i18n';
 
 test('renders caption', () => {
   render(<App />);
-  const countdownElement = screen.getByText(i18n.t('caption') as string);
-  expect(countdownElement).toBeInTheDocument();
+  const captionEl = screen.getByText(i18n.t('caption') as string);
+  expect(captionEl).toBeInTheDocument();
 });
