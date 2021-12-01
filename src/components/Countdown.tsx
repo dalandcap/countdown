@@ -20,7 +20,7 @@ const Countdown: FC<{ endTime: Date }> = ({ endTime }) => {
   }, [setTime, getCountdownDuration]);
 
   return (
-    <CellsContainer datatest-id="cells-container">
+    <CellsContainer data-testid="cells-container">
       {Object.entries(time).map(([unit, value]) => {
         // the cells for the semgments from hours and below should be shown always (presumably)
         const showCell =
@@ -30,7 +30,7 @@ const Countdown: FC<{ endTime: Date }> = ({ endTime }) => {
             key={unit}
             label={i18next.t(unit)}
             value={value}
-            datatest-id={`cell-${unit}`}
+            data-testid={`cell-${unit}`}
           />
         ) : null;
       })}
