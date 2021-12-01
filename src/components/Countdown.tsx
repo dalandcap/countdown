@@ -30,7 +30,6 @@ const Countdown: FC<{ endTime: Date }> = ({ endTime }) => {
             key={unit}
             label={i18next.t(unit)}
             value={value}
-            data-testid={`cell-${unit}`}
           />
         ) : null;
       })}
