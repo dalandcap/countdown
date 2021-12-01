@@ -2,11 +2,16 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { END_TIME } from '../App';
 import { Countdown } from '../components';
-import { intervalToDuration } from 'date-fns';
 import '../locales/i18n';
 import i18n from '../locales/i18n';
 
-const time = intervalToDuration({ start: Date.now(), end: new Date(END_TIME) });
+const time: Duration = {
+  months: 3,
+  days: 4,
+  hours: 16,
+  minutes: 52,
+  seconds: 11
+};
 
 test('renders countdown', () => {
   render(<Countdown endTime={new Date(END_TIME)} />);
