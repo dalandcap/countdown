@@ -20,16 +20,18 @@ const Countdown: FC<{ endTime: Date }> = ({ endTime }) => {
   }, [setTime, getCountdownDuration]);
 
   return (
-    <CellsContainer>
-      {Object.entries(time).map(([segment, value]) => {
+    <CellsContainer datatest-id="cells-container">
+      {Object.entries(time).map(([unit, value]) => {
         // the cells for the semgments from hours and below should be shown always (presumably)
         const showCell =
-          value ||
-          segment === 'seconds' ||
-          segment === 'minutes' ||
-          segment === 'hours';
+          value || unit === 'seconds' || unit === 'minutes' || unit === 'hours';
         return showCell ? (
-          <Cell key={segment} label={i18next.t(segment)} value={value} />
+          <Cell
+            key={unit}
+            label={i18next.t(unit)}
+            value={value}
+            datatest-id={`cell-${unit}`}
+          />
         ) : null;
       })}
     </CellsContainer>

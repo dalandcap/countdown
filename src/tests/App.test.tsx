@@ -1,9 +1,12 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import App from '../App';
+import '../locales/i18n';
+import i18n from '../locales/i18n';
 
 test('renders learn react link', () => {
   render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+  const countdownElement = screen.getByText('Starts in');
+
+  expect(countdownElement).toBeInTheDocument();
 });

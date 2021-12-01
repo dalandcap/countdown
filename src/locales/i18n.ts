@@ -4,15 +4,15 @@ import En from './en.json';
 import Ro from './ro.json';
 
 i18n.use(LanguageDetector).init({
-    lng: 'ro',
-    resources: {
-        en: {
-            translation: En,
-        },
-        ro: {
-            translation: Ro,
-        },
+  fallbackLng: 'en',
+  resources: {
+    en: {
+      translation: En,
     },
+    ro: {
+      translation: Ro,
+    },
+  },
 });
 
 export default i18n;
