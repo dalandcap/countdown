@@ -4,6 +4,22 @@ import { Countdown } from '../components';
 import '../locales/i18n';
 import i18n from '../locales/i18n';
 import { add } from 'date-fns';
+import App from '../App';
+
+jest.mock('react-router-dom', () => {
+  const actualModule = jest.requireActual('react-router-dom');
+  return {
+    __esModule: true,
+    ...actualModule,
+    useLocation: () => {
+      console.log('mocked useLocation called.');
+
+      return {
+        pathname: '/countdown',
+      };
+    },
+  };
+});
 
 const time: Duration = {
   months: 3,
@@ -47,4 +63,10 @@ test('each time cell renders the correct value', () => {
   Object.values(cellValues).forEach(({ el, value }) => {
     expect(Number(el.textContent)).toBe(value);
   });
+});
+
+test('renders correct pathname', () => {
+  render(<App />);
+  const locationEl = screen.getByTestId('location');
+  expect(locationEl.textContent).toContain('countdown');
 });
