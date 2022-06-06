@@ -13,16 +13,16 @@ const time: Duration = {
   seconds: 11,
 };
 
-const endTime = add(new Date(), time);
+const getEndTime = () => add(new Date(), time);
 
 test('renders countdown', () => {
-  render(<Countdown endTime={new Date(endTime)} />);
+  render(<Countdown endTime={new Date(getEndTime())} />);
   const countdownElement = screen.getByTestId('cells-container');
   expect(countdownElement).toBeInTheDocument();
 });
 
 test('renders each time cell', () => {
-  render(<Countdown endTime={new Date(endTime)} />);
+  render(<Countdown endTime={new Date(getEndTime())} />);
   const cellElements: HTMLElement[] = [];
   Object.entries(time).forEach(([unit, value]) => {
     if (value || unit === 'seconds' || unit === 'minutes' || unit === 'hours')
@@ -35,7 +35,7 @@ test('renders each time cell', () => {
 });
 
 test('each time cell renders the correct value', () => {
-  render(<Countdown endTime={new Date(endTime)} />);
+  render(<Countdown endTime={new Date(getEndTime())} />);
   const cellValues: Record<string, { el: ChildNode; value: number }> = {};
   Object.entries(time).forEach(([unit, value]) => {
     if (value || unit === 'seconds' || unit === 'minutes' || unit === 'hours')
@@ -44,11 +44,7 @@ test('each time cell renders the correct value', () => {
         value,
       };
   });
-  const secondsCell = cellValues.seconds;
-  // the seconds will most probably alrady change by the time it is tested so it whould have a error margin of a few seconds
-  expect(Number(secondsCell.el.textContent) <= secondsCell.value && Number(secondsCell.el.textContent) > secondsCell.value - 5).toBe(true);
-  delete cellValues.seconds;
-  Object.values(cellValues).forEach(({el, value}) => {    
-    expect(Number(el.textContent) === value).toBe(true)
-  })
+  Object.values(cellValues).forEach(({ el, value }) => {
+    expect(Number(el.textContent)).toBe(value);
+  });
 });
